@@ -8,6 +8,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgLoggerModule} from '@nsalaun/ng-logger';
 import {NgModule} from '@angular/core';
+import {PostsComponent} from './modules/posts/posts.component';
+import {PostsService} from './modules/posts/posts.service';
 import {XcMenuComponent} from './components/xc-menu/xc-menu.component';
 import {environment} from '../environments/environment';
 
@@ -24,7 +26,7 @@ export function BasicHttpFactory(backend: XHRBackend, defaultOptions: BasicReque
     BrowserModule,
     FormsModule,
     HttpModule,
-    // AppRoutingModule,
+    AppRoutingModule,
     NgLoggerModule.forRoot(environment.logLevel),
   ],
   providers: [
@@ -33,7 +35,8 @@ export function BasicHttpFactory(backend: XHRBackend, defaultOptions: BasicReque
       provide: BasicHttp,
       useFactory: BasicHttpFactory,
       deps: [XHRBackend, BasicRequestOptions]
-    }
+    },
+    PostsService
   ],
   bootstrap: [AppComponent]
 })

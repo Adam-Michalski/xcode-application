@@ -4,7 +4,8 @@ import {APP_CONF} from '../assets/rest/app-conf.const';
 import {NgModule} from '@angular/core';
 
 const routes: Routes = [
-  // {path: APP_CONF.ROUTES.ROOT, redirectTo: APP_CONF.ROUTES, pathMatch: 'full'},
+  {path: APP_CONF.ROUTES.ROOT.url, redirectTo: APP_CONF.ROUTES.POSTS.url, pathMatch: 'full'},
+  {path: APP_CONF.ROUTES.POSTS.url, loadChildren: './modules/posts/posts.module#PostsModule'},
 ];
 
 @NgModule({

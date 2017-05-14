@@ -12,15 +12,11 @@ import {Logger} from '@nsalaun/ng-logger';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private logger: Logger, private http: BasicHttp) {
+  constructor(private logger: Logger) {
 
   }
 
   ngOnInit(): void {
-    const options: RequestOptionsArgs = this.http.getDefaultOptions();
-    options.headers.append('Third-Custom', 'third cutom header');
-    this.http.get(APP_CONF.REST.POSTS, options).subscribe((res) => {
-      this.logger.log(res);
-    })
+    this.logger.log('App component on init');
   }
 }
