@@ -13,4 +13,4 @@ export const APP_CONF = {
     'ROOT': {url: '', name: 'Root', inMenu: false},
     'POSTS': {url: 'posts', name: 'Posts', inMenu: true}
   }
-};
+}
