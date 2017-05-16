@@ -8,10 +8,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgLoggerModule} from '@nsalaun/ng-logger';
 import {NgModule} from '@angular/core';
-import {PostsComponent} from './modules/posts/posts.component';
 import {PostsService} from './modules/posts/posts.service';
 import {XcMenuComponent} from './components/xc-menu/xc-menu.component';
 import {environment} from '../environments/environment';
+import {UsersService} from './shared/users.service';
 
 export function BasicHttpFactory(backend: XHRBackend, defaultOptions: BasicRequestOptions) {
   return new BasicHttp(backend, defaultOptions);
@@ -36,8 +36,10 @@ export function BasicHttpFactory(backend: XHRBackend, defaultOptions: BasicReque
       useFactory: BasicHttpFactory,
       deps: [XHRBackend, BasicRequestOptions]
     },
-    PostsService
+    PostsService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

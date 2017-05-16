@@ -11,8 +11,10 @@ import {PostsService} from './posts.service';
 export class PostsComponent implements OnInit {
 
   posts;
+  selected;
 
-  constructor(private logger: Logger, private postsService: PostsService) {}
+  constructor(private logger: Logger, private postsService: PostsService) {
+  }
 
   ngOnInit() {
     this.getAllPosts();
@@ -23,5 +25,9 @@ export class PostsComponent implements OnInit {
       this.logger.log('posts', res);
       this.posts = res;
     });
+  }
+
+  select(post) {
+    this.selected = post;
   }
 }

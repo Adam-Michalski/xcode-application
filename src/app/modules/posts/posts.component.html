@@ -1,3 +1,4 @@
-<div>
-  <xc-post *ngFor="let post of posts" [post]="post"></xc-post>
+<div *ngIf="posts">
+  <div (click)="select(post)" *ngFor="let post of posts" >{{post.title}}</div>
+  <xc-post *ngIf="selected" [post]="selected"></xc-post>
 </div>
