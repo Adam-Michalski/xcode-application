@@ -24,3 +24,47 @@ body {
 .xc-users td, .xc-users th {
   border: 1px solid #005f5f;
 }
+
+table {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, th {
+  border: 1px solid #005f5f;
+  height: 30px;
+  transition: all 0.3s;
+}
+
+th {
+  background: #DFDFDF;
+  font-weight: bold;
+}
+
+td {
+  background: #FAFAFA;
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background: #F1F1F1;
+}
+
+tr:nth-child(odd) td {
+  background: #FEFEFE;
+}
+
+div.xc-post {
+  border: 1px solid #005f5f;
+  margin: 2px;
+  padding: 4px;
+  background-color: #cccccc;
+}
+
+div.xc-post:hover {
+  background-color: #888888;
+  color: white;
+}
