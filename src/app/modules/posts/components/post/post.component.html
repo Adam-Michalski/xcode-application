@@ -1,3 +1,17 @@
-<div>{{post.title}}</div>
-<div>{{post.body}}</div>
-<!--<div>{{author}}</div>-->
+<div class="post" *ngIf="data.post && data.comments; else falsyPost">
+  <div>{{data.post.title}}</div>
+  <div>{{data.post.body}}</div>
+  <!--<div>{{user.name}}</div>-->
+
+  <h3>Comments</h3>
+  <div class="comments">
+    <div *ngFor="let c of data.comments" class="comment">
+      <div class="name">{{c.name}}</div>
+      <div class="body">{{c.body}}</div>
+      <div class="email">{{c.email}}</div>
+    </div>
+  </div>
+</div>
+<ng-template #falsyPost>
+  <h1>Loading</h1>
+</ng-template>

@@ -11,7 +11,7 @@ import {NgModule} from '@angular/core';
 import {PostsService} from './modules/posts/posts.service';
 import {XcMenuComponent} from './components/xc-menu/xc-menu.component';
 import {environment} from '../environments/environment';
-import {UsersService} from './shared/users.service';
+import {UsersService} from './modules/users/users.service';
 
 export function BasicHttpFactory(backend: XHRBackend, defaultOptions: BasicRequestOptions) {
   return new BasicHttp(backend, defaultOptions);

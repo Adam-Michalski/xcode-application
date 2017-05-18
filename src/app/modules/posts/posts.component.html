@@ -1,4 +1,9 @@
-<div *ngIf="posts">
-  <div (click)="select(post)" *ngFor="let post of posts" >{{post.title}}</div>
-  <xc-post *ngIf="selected" [post]="selected"></xc-post>
+<div *ngIf="posts; else falsyPosts" class="xc-posts">
+  <div *ngFor="let post of posts" class="xc-post" (click)="select(post)">
+    {{post.title}}
+  </div>
 </div>
+
+<ng-template #falsyPosts>
+  <h1>Loading posts</h1>
+</ng-template>

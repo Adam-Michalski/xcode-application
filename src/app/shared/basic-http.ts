@@ -1,23 +1,32 @@
-import {ConnectionBackend, Headers, Http, Request, RequestOptions, RequestOptionsArgs, Response} from '@angular/http';
+import {
+  ConnectionBackend, Headers, Http, Request, RequestOptions, RequestOptionsArgs, Response,
+  URLSearchParams
+} from '@angular/http';
 
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {BasicRequestOptions} from './basic-request.options';
 
 @Injectable()
 export class BasicHttp extends Http {
 
-  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
+  constructor(backend: ConnectionBackend, defaultOptions: BasicRequestOptions) {
     super(backend, defaultOptions);
   }
 
   /**
    * Veryfies if custom options is avaiable.
    */
-  getDefaultOptions(customOptions?: RequestOptions) {
+  getOptions(customOptions?: RequestOptions) {
+    const ro = new RequestOptions();
+    ro.headers = new Headers();
+    ro.params = new URLSearchParams();
+    return ro;
+  }
+
+  mergeOptions(customOptions?: RequestOptions) {
     if (customOptions) {
-      return customOptions;
-    } else {
-      return this._defaultOptions;
+      return customOptions.merge(this._defaultOptions);
     }
   }
 
@@ -28,7 +37,7 @@ export class BasicHttp extends Http {
    * of {@link BaseRequestOptions} before performing the request.
    */
   request(url: string | Request, options?: RequestOptions): Observable<Response> {
-    return super.request(url, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.request(url, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -36,7 +45,7 @@ export class BasicHttp extends Http {
    * Performs a request with `get` http method.
    */
   get(url: string, options?: RequestOptions): Observable<Response> {
-    return super.get(url, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.get(url, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -44,7 +53,7 @@ export class BasicHttp extends Http {
    * Performs a request with `post` http method.
    */
   post(url: string, body: any, options?: RequestOptions): Observable<Response> {
-    return super.post(url, body, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.post(url, body, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -52,7 +61,7 @@ export class BasicHttp extends Http {
    * Performs a request with `put` http method.
    */
   put(url: string, body: any, options?: RequestOptions): Observable<Response> {
-    return super.put(url, body, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.put(url, body, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -60,7 +69,7 @@ export class BasicHttp extends Http {
    * Performs a request with `delete` http method.
    */
   delete(url: string, options?: RequestOptions): Observable<Response> {
-    return super.delete(url, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.delete(url, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -68,7 +77,7 @@ export class BasicHttp extends Http {
    * Performs a request with `patch` http method.
    */
   patch(url: string, body: any, options?: RequestOptions): Observable<Response> {
-    return super.patch(url, body, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.patch(url, body, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -76,7 +85,7 @@ export class BasicHttp extends Http {
    * Performs a request with `head` http method.
    */
   head(url: string, options?: RequestOptions): Observable<Response> {
-    return super.head(url, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.head(url, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 
@@ -84,7 +93,7 @@ export class BasicHttp extends Http {
    * Performs a request with `options` http method.
    */
   options(url: string, options?: RequestOptions): Observable<Response> {
-    return super.options(url, this.getDefaultOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return super.options(url, this.mergeOptions(options)).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     ;
   }
 }

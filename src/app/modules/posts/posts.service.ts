@@ -1,4 +1,4 @@
-import {RequestOptions, RequestOptionsArgs, Response} from '@angular/http';
+import {RequestOptions, Response, URLSearchParams} from '@angular/http';
 
 import {APP_CONF} from '../../../assets/rest/app-conf.const';
 import {BasicHttp} from '../../shared/basic-http';
@@ -13,10 +13,27 @@ export class PostsService {
   }
 
   getAll(): Observable<any> {
-    const options: RequestOptions = this.http.getDefaultOptions();
+    const options: RequestOptions = this.http.getOptions();
     options.headers.append('Third-Custom', 'third cutom header');
-
     return this.http.get(APP_CONF.REST.POSTS, options).map((res: Response) => res.json());
+  }
+
+  get(postId): Observable<any> {
+    const options: RequestOptions = this.http.getOptions();
+    options.params.set('id', postId);
+    return this.http.get(APP_CONF.REST.POSTS, options).map((res: Response) => res.json());
+  }
+
+  getOwner(userId) {
+    const options: RequestOptions = this.http.getOptions();
+    options.params.set('userId', userId);
+    return this.http.get(APP_CONF.REST.USERS, options);
+  }
+
+  getComments(postId) {
+    const options: RequestOptions = this.http.getOptions();
+    options.params.set('postId', postId);
+    return this.http.get(APP_CONF.REST.COMMENTS, options);
   }
 
 }
