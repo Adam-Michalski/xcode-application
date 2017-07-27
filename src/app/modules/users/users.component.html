@@ -1,6 +1,10 @@
 <div *ngIf="users; else falsyUsers">
-  <ng-table [config]="options.config" [rows]="users" [columns]="options.columns">
-  </ng-table>
+  <ngx-datatable [rows]="users"
+                 [columns]="options.columns"
+                 [selectionType]="'single'"
+                 (activate)="onActivate($event)"
+                 (select)='onSelect($event)'>
+  </ngx-datatable>
 </div>
 <ng-template #falsyUsers>
   <h1>Loading users</h1>

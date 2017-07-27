@@ -1,34 +1,34 @@
 export const TABLE_USERS = {
   columns: [
     {
-      title: 'Name',
-      name: 'name',
-      className: ['column-name']
+      name: 'Name',
+      cellClass: 'column-name',
+      prop: 'name'
     },
     {
-      title: 'User name',
-      className: ['column-username'],
-      name: 'username'
+      name: 'User name',
+      cellClass: 'column-username',
+      prop: 'username'
     },
     {
-      title: 'Street',
-      className: ['column-street'],
-      name: 'address.street'
+      name: 'Street',
+      cellClass: 'column-street',
+      prop: 'address.street'
     },
     {
-      title: 'Suite',
-      className: ['column-suite'],
-      name: 'address.suite'
+      name: 'Suite',
+      cellClass: 'column-suite',
+      prop: 'address.suite'
     },
     {
-      title: 'City',
-      className: ['column-city'],
-      name: 'address.city'
+      name: 'City',
+      cellClass: 'column-city',
+      prop: 'address.city'
     },
     {
-      title: 'Zip-code',
-      className: ['column-zipcode'],
-      name: 'address.zipcode'
+      name: 'Zip-code',
+      cellClass: 'column-zipcode',
+      prop: 'address.zipcode'
     }
   ],
   page: 1,
